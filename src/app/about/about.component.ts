@@ -12,8 +12,8 @@ import {createHttpObservable} from '../common/util';
 export class AboutComponent implements OnInit {
 
     ngOnInit() {
-
-
+     const interval
+    setTimeout(() => sub.unsubscribe(), 5000);
     }
 
 
