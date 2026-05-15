@@ -11,16 +11,24 @@ import {catchError, delayWhen, map, retryWhen, shareReplay, tap} from 'rxjs/oper
     standalone: false
 })
 export class HomeComponent implements OnInit {
-
-
     constructor() {
 
     }
 
     ngOnInit() {
-
-
-
+const http$ = createHttpObservable('/api/courses');
+                http$
+         .pipe(
+           tap(() => console.log("HTTP request executed"))
+          map(res => Object.values(res["payload"]) ),
+           shareReplay(),
+           retryWhen(errors =>
+             errors.pipe(
+                    delayWhen(() => timer(2000)
+               )
+            )
+              )}
+   );
     }
 
 }
